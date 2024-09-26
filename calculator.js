@@ -54,14 +54,19 @@ keys.addEventListener('click', e => {
             calculator.dataset.previousKeyType = 'clear';
         }
         if (action === 'calculate') {
-            const firstValue = calculator.dataset.firstValue;
-            const secondValue = displayedNum;
-            const operator = calculator.dataset.operator;
+            let firstValue = calculator.dataset.firstValue;
+            let secondValue = displayedNum;
+            let operator = calculator.dataset.operator;
 
             if (firstValue) {
+                if (previousKeyType === 'calculate') {
+                    firstValue = displayedNum;
+                    secondValue = calculator.dataset.modValue;
+                }
                 display.textContent = calculate(firstValue, operator, secondValue);
             }
-
+            
+            calculator.dataset.modValue = secondValue;
             calculator.dataset.previousKeyType = 'calculate';
         }
     }
