@@ -50,7 +50,21 @@ keys.addEventListener('click', e => {
             }
             calculator.dataset.previousKeyType = 'decimal';
         }
+        if (action !== 'clear') {
+            const clearButton = calculator.querySelector('[data-action=clear');
+            clearButton.textContent = 'CE';
+            calculator.dataset.previousKeyType = 'clear';
+        }
         if (action === 'clear') {
+            if (key.textContent === 'AC') {
+                calculator.dataset.firstValue = '';
+                calculator.dataset.modValue = '';
+                calculator.dataset.operator = '';
+                calculator.dataset.previousKeyType = '';
+            } else {
+                key.textContent = 'AC';
+            }
+            display.textContent = 0;
             calculator.dataset.previousKeyType = 'clear';
         }
         if (action === 'calculate') {
