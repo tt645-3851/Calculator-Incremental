@@ -102,3 +102,22 @@ function calculate(firstNum, operator, secondNum) {
     }
 
 }
+
+const createResultString = () => {
+    // Required variables:
+    // keyContent, displayedNum, previousKeyType, action
+    if (!action) {
+        return displayedNum === '0' || 
+            previousKeyType === 'operator' || 
+            previousKeyType === 'calculate'
+            ? keyContent : displayedNum + keyContent;
+    }    
+    if (action === 'decimal') {
+        if (!displayedNum.includes('.')) {
+            return displayedNum + '.';
+        } else if (previousKeyType === 'operator' || previousKeyType === 'calculate') {
+            return '0.';
+        }
+        return displayedNum;
+    }
+}
